@@ -1,0 +1,3 @@
+[submodule "lib/Classy"]
+	path = lib/Classy
+	url = git://github.com/mitsuhiko/classy.git

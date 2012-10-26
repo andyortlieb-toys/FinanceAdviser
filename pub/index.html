@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+		<script src='../lib/Classy/classy.js'></script>
+		<script src='./types.js'></script>
+		<link rel="stylesheet" href="ui.css">
+	</head>		
+	<body>
+		
+		<div id="accounts">
+
+		</div>
+		<div id='pnlAcctCreate'><button type='button' onclick='btnAcctCreate();'>Add Account</button></div>
+		<div id='pnlAcctSetup' class='hidden'>
+			<h3>Account Setup</h3>
+
+			<label for='inpAcctType'>Type: </label>
+			<select name='inpAcctType' id='inpAcctType'>
+				<option>
+					Liability
+				</option>
+				<option>
+					Service
+				</option>
+				<option>
+					Asset
+				</option>
+				<option>
+					Market
+				</option>
+			</select>
+
+			
+		</div>
+
+		<script src='./ui.js'></script>
+	</body>
+
+</html>

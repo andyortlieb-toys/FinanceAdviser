@@ -1,8 +1,41 @@
 
-.hidden{
-	display:none;
+h3{
+	border-bottom:1px solid #ccc;
 }
 
-h3{
-	border-bottom:1px solid #eee;
+table{
+  border-collapse: collapse;
+}
+
+#pnlAcctSetup{
+	border: 20px solid #ccc;
+}
+
+#pnlAcctSetup, td{
+	padding:3px;
+}
+
+#pnlAcctSetup label{
+	float:right;
+}
+
+#accounts td, #accounts th{
+	border: 1px solid #eee;
+	padding: 5px;
+
+}
+
+#accounts td.empty, #accounts th.empty{
+	border: none;
+}
+
+
+						/*== Utilities ==*/
+/*
+ 	@define cssUtility
+ 	@class hidden
+ 	Hides elements
+*/
+.hidden{
+	display:none;
 }

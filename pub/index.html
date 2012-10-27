@@ -7,32 +7,87 @@
 		<link rel="stylesheet" href="ui.css">
 	</head>		
 	<body>
-		
+
+		<h3>
+			Accounts
+		</h3>
+		<div id='AccountEditArea'>
+			<div id='pnlAcctCreate'><button type='button' onclick='btnAcctCreate();'>Add Account</button></div>
+			<div id='pnlAcctSetup' class='hidden'>
+				<h3>Account Setup</h3>
+
+				<table>
+
+					<tr>
+						<td>
+							<label for='inpAcctName'>Name</label>
+						</td>
+						<td>
+							<input type='text' id='inpAcctName' name='inpAcctName'></input>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for='inpAcctType'>Type </label>
+						</td>
+						<td>
+							<select name='inpAcctType' id='inpAcctType'>
+								<option>
+									Liability
+								</option>
+								<option>
+									Service
+								</option>
+								<option>
+									Asset
+								</option>
+								<option>
+									Market
+								</option>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for='inpAcctStartBalance'>Starting Balance</label>
+						</td>
+						<td>
+							<input type='text' id='inpAcctStartBalance' name='inpAcctStartBalance'></input>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+						</td>
+						<td>
+							<button type='button' onclick='btnAcctSave()'>Save</button>
+							<button type='button' onclick='btnAcctSetupCancel()'>Cancel</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 		<div id="accounts">
+			<table>
+				<thead>
+					<tr>
+						<th class='empty'></th><th>Account Type</th><th>Starting Balance</th><th>Minimum Payment</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Sample Account</th>
+						<td>Liability</td>
+						<td>64000</td>
+						<td>400</td>
+					</tr>
+				</tbody>
 
+			</table>
 		</div>
-		<div id='pnlAcctCreate'><button type='button' onclick='btnAcctCreate();'>Add Account</button></div>
-		<div id='pnlAcctSetup' class='hidden'>
-			<h3>Account Setup</h3>
-
-			<label for='inpAcctType'>Type: </label>
-			<select name='inpAcctType' id='inpAcctType'>
-				<option>
-					Liability
-				</option>
-				<option>
-					Service
-				</option>
-				<option>
-					Asset
-				</option>
-				<option>
-					Market
-				</option>
-			</select>
-
-			
-		</div>
+		
 
 		<script src='./ui.js'></script>
 	</body>

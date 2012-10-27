@@ -1,5 +1,23 @@
+/*
+
+ @source
+ == Types ==
+ Types for use by FinanceAdviser
+
+ This module is AMD compatible, and also works without it.
+
+*/	
+
+// Self calling anonymous function
 (function(){
 
+	/*
+		@function
+		@private 
+
+		typesLib as a function allows us to decide whether or not to invoke it as AMD.
+
+	*/
 	function typesLib(){
 		var 
 			exports = {}
@@ -7,6 +25,10 @@
 
 		with (exports){
 
+			/*
+				@object BalanceTypes
+
+			*/
 			// Balance Types (Account Types) (Credit/Debit)
 			exports.BalanceTypes = {
 				Unknown:0,
@@ -17,7 +39,8 @@
 			exports.Account = Class.$extend({
 				_type: "Account",
 				__init__: function(config){
-					console.log("init Acount");
+					this._type = this._type; // A must! Make it an own property for serialization.
+
 					config = config || {};
 					this.balance = config.balance || 0;
 				},

@@ -35,15 +35,17 @@
 		pnlAcctCreate.classList.add('hidden');
 	}
 
-	function btnAcctSave(id){
+	function btnAcctSave(){
+		var id = pnlAcctSetup.acctId;
+		console.log(id);
 		console.log(pnlAcctSetup.type.value);
 		newAcct = new _fa.types.accounts[pnlAcctSetup.type.value]();
 		newAcct.name = pnlAcctSetup.name.value;
-		newAcct.startbalance = parseFloat(pnlAcctSetup.startbalance.value);
-		newAcct.apr = pnlAcctSetup.apr.value;
-		newAcct.minpmt = pnlAcctSetup.minpmt.value;
+		newAcct.startbalance = parseFloat(pnlAcctSetup.startbalance.value) || 0;
+		newAcct.apr = parseFloat(pnlAcctSetup.apr.value)||0;
+		newAcct.minpmt = parseFloat(pnlAcctSetup.minpmt.value)||0;
 
-		if (id){
+		if (id!==undefined){
 			accounts[id] = newAcct;
 		} else {
 			id = accounts.push(newAcct)-1;
@@ -61,7 +63,7 @@
 	}
 
 	function displayAccount(id){
-		var newEl;
+		var newEl, exists;
 		console.log("STUB: Display account", arguments);
 		console.log(JSON.stringify(accounts[id]));
 		
@@ -73,12 +75,13 @@
 		newEl.innerHTML += "<td>"+accounts[id].minpmt+"</td>";
 		newEl.innerHTML += "<td>" +
 			"<button type='button' onclick='editAccount("+id+");'>" +
-				"<img src='http://cdn.dustball.com/link_edit.png' />" +
+				"<img src='http://cdn.dustball.com/pencil.png' />" +
 			"</button>" +
 		"</td>";
 
-
-		pnlAccts.appendChild(newEl);
+		exists = pnlAccts.children[id];
+		pnlAccts.insertBefore(newEl, exists);
+		if (exists) { pnlAccts.removeChild(exists); }
 	
 	}
 
@@ -88,6 +91,17 @@
 		pnlAcctSetup.startbalance.value = accounts[id].startbalance;
 		pnlAcctSetup.apr.value = accounts[id].apr;
 		pnlAcctSetup.minpmt.value = accounts[id].minpmt;
+		pnlAcctSetup.acctId = id;
+
+		acctEdit();
+	}
+
+	function toggleHidden(panel){
+		if (Array.prototype.indexOf.call(panel.classList, "hidden") !== -1)
+			panel.classList.remove('hidden');
+		else
+			panel.classList.add('hidden');
+		return;
 	}
 
 

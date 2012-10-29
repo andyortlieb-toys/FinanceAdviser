@@ -10,7 +10,7 @@
 
 		<h3>
 			Accounts
-			<span style='float:right;' onclick='toggleHidden(accountsArea);'>+/-</span>
+			<button type='button' style='float:right;' onclick='toggleHidden(accountsArea);'>+/-</button>
 		</h3>
 
 		<div id='accountsArea'>
@@ -97,12 +97,30 @@
 
 
 		<h3>
-			Projections
-			<span style='float:right;' onclick='toggleHidden(projectionsArea);'>+/-</span>
+			Projections & Autobudget
+			<button type='button' style='float:right;' onclick='toggleHidden(projectionsArea);'>+/-</button>
 		</h3>
 
 		<div id='projectionsArea'>
-			x
+			Years: 
+				<select id='inpProjYears'>
+				</select>
+			Months:
+				<select id='inpProjMonths'>
+				</select>
+			Optimization Method:
+				<select id='inpProjOptimization'>
+					<option value='none'>
+							None
+					</option>
+					<option value='distAll'>
+							Distribute across all
+					</option>
+					<option value='distLiabilities'>
+							Distribute across liabilities then assets
+					</option>
+				</select>
+				<button type='button' onclick='project();'>Project</button>
 		</div>
 
 		<script src='./ui.js'></script>

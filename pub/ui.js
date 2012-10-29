@@ -110,12 +110,14 @@
 	for (var t in _fa.types.accounts){
 		inpAcctType.innerHTML+='<option value="'+t+'">'+t+'</option>';
 	}
+
 	// Look for accounts in localstorage, if exists, use them.
 	try {
 		accounts = JSON.parse(localStorage.accounts);
 	} catch (e){
 		console.warn("Error loading accounts from localstore: ", e, localStorage.accounts)
 	}
+
 	// Display the known accounts
 	for (var i=0; i<accounts.length; ++i){
 		var acctReplacement = new _fa.types.accounts[accounts[i]._type];
@@ -126,6 +128,15 @@
 		displayAccount(i);
 	}
 
+	// Populate years and months combos for projections
+	for (i=0;i<160;++i){
+		// 160 years should be enough time for you to invest in your childrens' retirement.
+		inpProjYears.innerHTML += "<option value="+i+">"+i+"</option>";
+	}
+	for (i=0;i<11;++i){
+		// 160 years should be enough time for you to invest in your childrens' retirement.
+		inpProjMonths.innerHTML += "<option value="+i+">"+i+"</option>";
+	}
 
 
 //})();

@@ -1,7 +1,7 @@
 /*
 
  @source
- == Types ==
+ ## Types
  Types for use by FinanceAdviser
 
  This module is AMD compatible, and also works without it.

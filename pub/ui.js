@@ -106,10 +106,30 @@
 
 
 	// onReady type stuff...
+
 	// Populate account types dropdown.
 	for (var t in _fa.types.accounts){
 		inpAcctType.innerHTML+='<option value="'+t+'">'+t+'</option>';
 	}
+	// Populate years and months combos for projections
+	for (i=0;i<160;++i){
+		// 160 years should be enough time for you to invest in your childrens' retirement.
+		inpProjYears.innerHTML += "<option value="+i+">"+i+"</option>";
+	}
+	for (i=0;i<11;++i){
+		// 160 years should be enough time for you to invest in your childrens' retirement.
+		inpProjMonths.innerHTML += "<option value="+i+">"+i+"</option>";
+	}
+
+	// Look for hash data.
+	try {
+		if (window.location.hash)
+			accounts = JSON.parse(window.location.hash.slice(1)).accounts;
+	} catch (e) {
+		console.log("Error loadings accounts from URL hashL ", e)
+	}
+	window.location.hash="";
+
 
 	// Look for accounts in localstorage, if exists, use them.
 	try {
@@ -128,15 +148,6 @@
 		displayAccount(i);
 	}
 
-	// Populate years and months combos for projections
-	for (i=0;i<160;++i){
-		// 160 years should be enough time for you to invest in your childrens' retirement.
-		inpProjYears.innerHTML += "<option value="+i+">"+i+"</option>";
-	}
-	for (i=0;i<11;++i){
-		// 160 years should be enough time for you to invest in your childrens' retirement.
-		inpProjMonths.innerHTML += "<option value="+i+">"+i+"</option>";
-	}
 
 
 //})();

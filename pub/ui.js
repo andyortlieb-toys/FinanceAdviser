@@ -124,7 +124,10 @@
 	// Look for hash data.
 	try {
 		if (window.location.hash)
-			accounts = JSON.parse(window.location.hash.slice(1)).accounts;
+			if (JSON.parse(window.location.hash.slice(1)).accounts){
+				localStorage.accounts = JSON.stringify( JSON.parse(window.location.hash.slice(1)).accounts );
+			}
+
 	} catch (e) {
 		console.log("Error loadings accounts from URL hashL ", e)
 	}

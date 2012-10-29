@@ -77,6 +77,18 @@
 			"<button type='button' onclick='editAccount("+id+");'>" +
 				"<img src='http://cdn.dustball.com/pencil.png' />" +
 			"</button>" +
+			"<button type='button' onclick='swapup("+id+");' >" +
+				"<img src='http://cdn.dustball.com/arrow_up.png'>" +
+			"</button>" +
+			"<button type='button' onclick='swapdown("+id+");' >" +
+				"<img src='http://cdn.dustball.com/arrow_down.png'>" +
+			"</button>" +
+			"<button type='button' onclick='removeAcct("+id+");' >" +
+				"<img src='http://cdn.dustball.com/delete.png'>" +
+			"</button>" +
+			"<button type='button' onclick='ignoreAcct("+id+");' >" +
+				"<img src='http://cdn.dustball.com/stop.png'>" +
+			"</button>" +
 		"</td>";
 
 		exists = pnlAccts.children[id];
@@ -104,6 +116,29 @@
 		return;
 	}
 
+	function saveurl(){
+		window.location.hash = JSON.stringify({accounts:accounts});
+		console.log("yahbaba");
+	}
+
+	function project(){
+		var netWorth=0;
+		var netIncome=0;
+
+		// Reset the balances.
+		for (var i=0;i<accounts.length; ++i){
+			accounts[i].balance = accounts[i].startbalance;
+		}
+
+		// TODO: Figure out what to do.
+
+		for (var i=0; i<accounts.length; ++i){
+			console.log("iter:", accounts[i].getBalance(), accounts[i].getPayment());
+			netWorth += accounts[i].getBalance();
+			netIncome += accounts[i].getPayment();
+		}
+		console.log("Worth:", netWorth, ". Income: ", netIncome);
+	}
 
 	// onReady type stuff...
 

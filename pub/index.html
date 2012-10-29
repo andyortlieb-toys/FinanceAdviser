@@ -8,6 +8,11 @@
 	</head>		
 	<body>
 
+		<button type='button' onclick='saveurl();'>
+			Save Data URL
+		</button>
+		<div></div>
+
 		<h3>
 			Accounts
 			<button type='button' style='float:right;' onclick='toggleHidden(accountsArea);'>+/-</button>
@@ -83,6 +88,24 @@
 
 						<tr>
 							<td>
+								<label for='inpAcctLimit'>Balance Limit</label>
+							</td>
+							<td>
+								<input type='text' id='inpAcctLimit' name='inpAcctLimit'></input>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<label for='inpAcctMinimum'>Balance Minimum</label>
+							</td>
+							<td>
+								<input type='text' id='inpAcctMinimum' name='inpAcctMinimum'></input>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
 							</td>
 							<td>
 								<button type='button' onclick='btnAcctSave()'>Save</button>
@@ -120,7 +143,7 @@
 							Distribute across liabilities then assets
 					</option>
 				</select>
-				<button type='button' onclick='project();'>Project</button>
+				<button type='button' onclick='project();'><img src='http://cdn.dustball.com/wand.png'> Project</button>
 		</div>
 
 		<script src='./ui.js'></script>

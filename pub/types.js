@@ -36,6 +36,12 @@
 				Credit:-1
 			}
 
+			// Payment Types
+			exports.PaymentTypes = {
+				Revenue:1,
+				Expense:-1
+			}
+
 			exports.Account = Class.$extend({
 				_type: "Account",
 				__init__: function(config){
@@ -44,13 +50,19 @@
 					for (var k in {_type:1,name:1,apr:1,balance:1,minpmt:1}){
 						this[k] = this[k];
 					}
-					this.balance = this.balance || this.startbalance;
+					this.balance = this.balance || this.startbalance || 0;
 					config = config || {};
-					this.balance = config.balance || 0;
 				},
+
 				balanceType: BalanceTypes.Unknown,
-				procBalance: function(){
+				paymentType: PaymentTypes.Expense,
+
+				getBalance: function(){
 					return this.balance * this.balanceType;
+				},
+
+				getPayment: function(){
+					return this.minpmt * this.paymentType;
 				},
 
 				// @prop
@@ -62,7 +74,9 @@
 				// @prop
 				apr: 0,
 				// @prop
-				minpmt: 0
+				minpmt: 0,
+				// @prop
+				limit: null
 
 			});
 
@@ -88,6 +102,22 @@
 			exports.accounts.Obligation = Account.$extend({
 				_type: "Obligation",
 				balanceType:BalanceTypes.Liability
+			});
+
+			exports.accounts.CreditCard = Account.$extend({
+				_type: "CreditCard",
+				balanceType:BalanceTypes.Liability
+			});
+
+			exports.accounts.Revenue = Account.$extend({
+				_type: "Revenue",
+				balanceType:BalanceTypes.Unknown,
+				paymentType: PaymentTypes.Revenue
+			});
+
+			exports.accounts.BudgetItem = Account.$extend({
+				_type: "BudgetItem",
+				balanceType:BalanceTypes.Unknown
 			});
 
 		}

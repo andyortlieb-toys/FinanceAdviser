@@ -20,7 +20,7 @@
 	*/
 	function typesLib(){
 		var 
-			exports = {}
+			exports = {accounts:{}}
 		;
 
 		with (exports){
@@ -39,18 +39,34 @@
 			exports.Account = Class.$extend({
 				_type: "Account",
 				__init__: function(config){
-					this._type = this._type; // A must! Make it an own property for serialization.
-
+					
+					// A must! Make it an own property for serialization.
+					for (var k in {_type:1,name:1,apr:1,balance:1,minpmt:1}){
+						this[k] = this[k];
+					}
+					this.balance = this.balance || this.startbalance;
 					config = config || {};
 					this.balance = config.balance || 0;
 				},
 				balanceType: BalanceTypes.Unknown,
 				procBalance: function(){
 					return this.balance * this.balanceType;
-				}
+				},
+
+				// @prop
+				_type: "Account",
+				// @prop
+				startbalance: 0,
+				// @prop
+				balance: 0,
+				// @prop
+				apr: 0,
+				// @prop
+				minpmt: 0
+
 			});
 
-			exports.Asset = Account.$extend({
+			exports.accounts.Asset = Account.$extend({
 				_type: "Asset",
 				balanceType: BalanceTypes.Debit,
 				__init__: function(config){
@@ -59,17 +75,17 @@
 				}
 			});
 
-			exports.Liability = Account.$extend({
+			exports.accounts.Liability = Account.$extend({
 				_type: "Liability",
 				balanceType: BalanceTypes.Credit
 			});
 
-			exports.Service = Account.$extend({
+			exports.accounts.Service = Account.$extend({
 				_type: "Service",
 				balanceType:BalanceTypes.Liability
 			});
 
-			exports.Obligation = Account.$extend({
+			exports.accounts.Obligation = Account.$extend({
 				_type: "Obligation",
 				balanceType:BalanceTypes.Liability
 			});

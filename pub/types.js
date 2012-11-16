@@ -120,6 +120,12 @@
 				balanceType:BalanceTypes.Unknown
 			});
 
+			exports.accounts.Allowance = Account.$extend({
+				_type: "Allowance",
+				balanceType:BalanceTypes.Unknown
+			});
+
+
 		}
 
 		return exports;

@@ -124,21 +124,37 @@
 	function project(){
 		var netWorth=0;
 		var netIncome=0;
+		var projectionIncome = 0;
 
+		var months = (parseInt(inpProjYears.value)*12)+parseInt(inpProjMonths.value) 
+		console.log(months)
 		// Reset the balances.
 		for (var i=0;i<accounts.length; ++i){
 			accounts[i].balance = accounts[i].startbalance;
 		}
 
 		// TODO: Figure out what to do.
+		console.log("START")
+		for (var m=0; m<months; ++m){
 
-		for (var i=0; i<accounts.length; ++i){
-			console.log("iter:", accounts[i].getBalance(), accounts[i].getPayment());
-			netWorth += accounts[i].getBalance();
-			netIncome += accounts[i].getPayment();
+			console.log('\tMonthly Iteration...')
+			netWorth = 0;
+			netIncome = 0;
+
+			for (var i=0; i<accounts.length; ++i){
+				console.log("\t\taccount iter:", accounts[i].getBalance(), accounts[i].getPayment());
+				netWorth += accounts[i].getBalance();
+				netIncome += accounts[i].getPayment();
+			}
+			console.log("\t\tMonthly iter result: Worth:", netWorth, ". Income: ", netIncome);
+
+			projectionIncome += netIncome
+
 		}
-		console.log("Worth:", netWorth, ". Income: ", netIncome);
+		console.log("END, Total Income (gains):", projectionIncome);
+
 	}
+
 
 	// onReady type stuff...
 

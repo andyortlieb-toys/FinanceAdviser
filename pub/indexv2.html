@@ -8,145 +8,47 @@
 		<link rel="stylesheet" href="ui.css">
 	</head>		
 	<body>
-
-		<button type='button' onclick='saveurl();'>
-			Save Data URL
-		</button>
-		<div></div>
-
-		<h3>
-			Accounts
-			<button type='button' style='float:right;' onclick='toggleHidden(accountsArea);'>+/-</button>
-		</h3>
-
-		<div id='accountsArea'>
-			
-			<div id="accounts">
-				<table>
-					<thead>
-						<tr>
-							<th class='empty'></th><th>Account Type</th><th>Starting Balance</th><th>APR</th><th>Minimum Payment</th><th class='empty'></th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-
-				</table>
-			</div>
-			
-			<div id='AccountEditArea'>
-				<div id='pnlAcctCreate'><button type='button' onclick='btnAcctCreate();'>Add Account</button></div>
-				<div id='pnlAcctSetup' class='hidden'>
-					<h3>Account Setup</h3>
-
+		<div ng-controller='FACtrl'>
+			<div id='accountsArea'>
+				<div id="accounts">
 					<table>
+						<thead>
+							<tr>
+								<th class='empty'></th><th>Account Type</th><th>Starting Balance</th><th>APR</th><th>Minimum Payment</th><th class='empty'></th>
+							</tr>
+						</thead>
 
-						<tr>
-							<td>
-								<label for='inpAcctName'>Name</label>
-							</td>
-							<td>
-								<input type='text' id='inpAcctName' name='inpAcctName'></input>
-							</td>
-						</tr>
+						<tbody>
+							<tr ng-repeat="account in accounts">
+								<th>{{account.name}}</th>
+								<td>{{account._type}}</td>
+								<td>{{account.startbalance}}</td>
+								<td>{{account.apr}}</td>
+								<td>{{account.minpmt}}</td>
+								<td>
+									<button type='button' onclick='editAccount("+id+");'>
+										<img src='http://cdn.dustball.com/pencil.png' />
+									</button>
+									<button type='button' onclick='swapup("+id+");' >
+										<img src='http://cdn.dustball.com/arrow_up.png'>
+									</button>
+									<button type='button' onclick='swapdown("+id+");' >
+										<img src='http://cdn.dustball.com/arrow_down.png'>
+									</button>
+									<button type='button' onclick='removeAcct("+id+");' >
+										<img src='http://cdn.dustball.com/delete.png'>
+									</button>
+									<button type='button' onclick='ignoreAcct("+id+");' >
+										<img src='http://cdn.dustball.com/stop.png'>
+									</button>
+								</td>
+							</tr>
+						</tbody>
 
-						<tr>
-							<td>
-								<label for='inpAcctType'>Type </label>
-							</td>
-							<td>
-								<select name='inpAcctType' id='inpAcctType'>
-								</select>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<label for='inpAcctStartBalance'>Starting Balance</label>
-							</td>
-							<td>
-								<input type='text' id='inpAcctStartBalance' name='inpAcctStartBalance'></input>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<label for='inpAcctAPR'>APR</label>
-							</td>
-							<td>
-								<input type='text' id='inpAcctAPR' name='inpAcctAPR'></input>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<label for='inpAcctMinpmt'>Minimum Payment</label>
-							</td>
-							<td>
-								<input type='text' id='inpAcctMinpmt' name='inpAcctMinpmt'></input>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<label for='inpAcctLimit'>Balance Limit</label>
-							</td>
-							<td>
-								<input type='text' id='inpAcctLimit' name='inpAcctLimit'></input>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<label for='inpAcctMinimum'>Balance Minimum</label>
-							</td>
-							<td>
-								<input type='text' id='inpAcctMinimum' name='inpAcctMinimum'></input>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-							</td>
-							<td>
-								<button type='button' onclick='btnAcctSave()'>Save</button>
-								<button type='button' onclick='btnAcctSetupCancel()'>Cancel</button>
-							</td>
-						</tr>
 					</table>
 				</div>
 			</div>
-
 		</div>
-
-
-		<h3>
-			Projections & Autobudget
-			<button type='button' style='float:right;' onclick='toggleHidden(projectionsArea);'>+/-</button>
-		</h3>
-
-		<div id='projectionsArea'>
-			Years: 
-				<select id='inpProjYears'>
-				</select>
-			Months:
-				<select id='inpProjMonths'>
-				</select>
-			Optimization Method:
-				<select id='inpProjOptimization'>
-					<option value='Minimum'>
-							None
-					</option>
-					<option value='distAll'>
-							Distribute across all
-					</option>
-					<option value='distLiabilities'>
-							Distribute across liabilities then assets
-					</option>
-				</select>
-				<button type='button' onclick='project();'><img src='http://cdn.dustball.com/wand.png'> Project</button>
-		</div>
-
 	</body>
 
 </html>

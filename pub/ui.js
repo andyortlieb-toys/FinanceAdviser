@@ -68,6 +68,9 @@
 		console.log(JSON.stringify(accounts[id]));
 		
 		newEl = document.createElement('tr');
+		if (accounts[id].ignored){
+			newEl.classList.add('ignored');
+		}
 		newEl.innerHTML = "<th>"+accounts[id].name+"</th>";
 		newEl.innerHTML += "<td>"+accounts[id]._type+"</td>";
 		newEl.innerHTML += "<td>"+accounts[id].startbalance+"</td>";
@@ -121,6 +124,28 @@
 		console.log("yahbaba");
 	}
 
+	function ignoreAcct(idx){
+		if (pnlAccts.children[idx].classList.contains('ignored')){
+			setNotIgnored(idx);
+		} else {
+			setIgnored(idx);
+		}
+	}
+
+	function setIgnored(idx){
+		pnlAccts.children[idx].classList.add('ignored');
+		accounts[idx].ignored=true;
+		localStorage.accounts = JSON.stringify(accounts);
+
+	}
+
+	function setNotIgnored(idx){
+		pnlAccts.children[idx].classList.remove('ignored');
+		delete accounts[idx].ignored
+		localStorage.accounts = JSON.stringify(accounts);
+
+	}
+
 	function project(){
 		var netWorth=0;
 		var netIncome=0;
@@ -142,6 +167,7 @@
 			netIncome = 0;
 
 			for (var i=0; i<accounts.length; ++i){
+				if (accounts[i].ignored) { continue; }
 				console.log("\t\taccount iter:", accounts[i].getBalance(), accounts[i].getPayment());
 				netWorth += accounts[i].getBalance();
 				netIncome += accounts[i].getPayment();

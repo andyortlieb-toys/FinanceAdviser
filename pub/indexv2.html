@@ -44,7 +44,7 @@
 								</td>
 
 
-								<th ng-show="account.editing">
+								<th ng-show="account.editing">	
 									<input type="text" ng-model="account.name" placeholder="Account Name" ng-required />
 								</th>
 								<td ng-show="account.editing">
@@ -60,7 +60,7 @@
 									<input type="text" ng-model="account.minpmt" placeholder="Minimum Deposit" ng-required />
 								</td>
 								<td ng-show="account.editing">
-									<button type='button' ng-click="account.editing=false;">
+									<button type='button' ng-click="account.editing=false; saveToLocalStorage();">
 										<img src='http://cdn.dustball.com/disk.png' />
 									</button>
 								</td>

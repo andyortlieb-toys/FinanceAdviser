@@ -125,7 +125,35 @@
 				balanceType:BalanceTypes.Unknown
 			});
 
+			exports.accountTypes = (function(){
+				res = []
+				for (k in exports.accounts){
+					if (exports.accounts[k].prototype._type){
+						res.push(exports.accounts[k].prototype._type);
+					}
+				}
+				return res;
+			})();
 
+			exports.initAccount = function(accountobj){
+				var acct = new exports.accounts[accountobj._type];
+
+				for (var k in accountobj){
+					acct[k] = accountobj[k];
+				}
+
+				return acct;
+			}
+
+			exports.initAccounts = function(accountlist){
+				newaccounts = [];
+
+				for (var i=0; i<accountlist.length; ++i){
+					newaccounts.push(exports.initAccount(accountlist[i]));
+				}
+
+				return newaccounts;
+			}
 		}
 
 		return exports;

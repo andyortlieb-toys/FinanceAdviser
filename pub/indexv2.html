@@ -29,16 +29,16 @@
 									<button type='button' ng-click="account.editing=true;">
 										<img src='http://cdn.dustball.com/pencil.png' />
 									</button>
-									<button type='button' onclick='swapup("+id+");' >
+									<button type='button' ng-click='swapup($index);' >
 										<img src='http://cdn.dustball.com/arrow_up.png'>
 									</button>
-									<button type='button' onclick='swapdown("+id+");' >
+									<button type='button' ng-click='swapdown($index);' >
 										<img src='http://cdn.dustball.com/arrow_down.png'>
 									</button>
-									<button type='button' onclick='removeAcct("+id+");' >
+									<button type='button' ng-click='removeAcct($index);' >
 										<img src='http://cdn.dustball.com/delete.png'>
 									</button>
-									<button type='button' onclick='ignoreAcct("+id+");' >
+									<button type='button' ng-click='ignoreAcct($index);' >
 										<img src='http://cdn.dustball.com/stop.png'>
 									</button>
 								</td>

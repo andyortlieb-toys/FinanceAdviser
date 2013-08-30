@@ -20,13 +20,13 @@
 
 						<tbody>
 							<tr ng-repeat="account in accounts">
-								<th>{{account.name}}</th>
-								<td>{{account._type}}</td>
-								<td>{{account.startbalance}}</td>
-								<td>{{account.apr}}</td>
-								<td>{{account.minpmt}}</td>
-								<td>
-									<button type='button' onclick='editAccount("+id+");'>
+								<th ng-hide="account.editing">{{account.name}}</th>
+								<td ng-hide="account.editing">{{account._type}}</td>
+								<td ng-hide="account.editing">{{account.startbalance}}</td>
+								<td ng-hide="account.editing">{{account.apr}}</td>
+								<td ng-hide="account.editing">{{account.minpmt}}</td>
+								<td ng-hide="account.editing">
+									<button type='button' ng-click="account.editing=true;">
 										<img src='http://cdn.dustball.com/pencil.png' />
 									</button>
 									<button type='button' onclick='swapup("+id+");' >
@@ -42,6 +42,30 @@
 										<img src='http://cdn.dustball.com/stop.png'>
 									</button>
 								</td>
+
+
+								<th ng-show="account.editing">
+									<input type="text" ng-model="account.name" placeholder="Account Name" ng-required />
+								</th>
+								<td ng-show="account.editing">
+									<input type="text" ng-model="account._type" placeholder="Type" ng-required />
+								</td>
+								<td ng-show="account.editing">
+									<input type="text" ng-model="account.startbalance" placeholder="Starting Balance" ng-required />
+								</td>
+								<td ng-show="account.editing">
+									<input type="text" ng-model="account.apr" placeholder="APR" ng-required />
+								</td>
+								<td ng-show="account.editing">
+									<input type="text" ng-model="account.minpmt" placeholder="Minimum Deposit" ng-required />
+								</td>
+								<td ng-show="account.editing">
+									<button type='button' ng-click="account.editing=false;">
+										<img src='http://cdn.dustball.com/disk.png' />
+									</button>
+								</td>
+
+
 							</tr>
 						</tbody>
 
